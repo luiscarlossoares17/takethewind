@@ -15,12 +15,13 @@ class CreateTeamusersTable extends Migration
     {
         Schema::create('teamusers', function (Blueprint $table) {
             $table->bigInteger('team_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('companyuser_id')->unsigned();
             $table->bigInteger('userlevel_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('team_id')->references('id')->on('teams');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('companyuser_id')->references('id')->on('companyusers');
             $table->foreign('userlevel_id')->references('id')->on('userlevels');
         });
     }

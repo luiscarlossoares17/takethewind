@@ -25,6 +25,10 @@
     },
     "dependencies": {
         "admin-lte": "^3.1.0-rc",
-        "laravel-mix-merge-manifest": "^2.0.0"
+        "datatables": "^1.10.18",
+        "datatables.net": "^1.10.24",
+        "datatables.net-dt": "^1.10.24",
+        "laravel-mix-merge-manifest": "^2.0.0",
+        "ziggy-js": "^1.0.5"
     }
 }

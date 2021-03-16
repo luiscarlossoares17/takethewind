@@ -26,10 +26,14 @@ mix.sourceMaps(true);*/
 
 mix.js('resources/js/bootstrap.js', 'public/js')
     .js('resources/js/app.js', 'public/js')
+    .js('resources/js/datatables.js', 'public/js')
     .js('resources/js/webpages/loginpage.js', 'public/js')
     .js('resources/js/webpages/teammanager.js', 'public/js')
+    .js('resources/js/webpages/users.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/loginpage.scss', 'public/css');
+    .sass('resources/sass/loginpage.scss', 'public/css')
+    .sass('resources/sass/backoffice.scss', 'public/css')
+    .sass('resources/sass/teamsmanager.scss', 'public/css');
 
 
 

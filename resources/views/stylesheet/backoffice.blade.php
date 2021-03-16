@@ -1,0 +1,1 @@
+<link href="{{ mix('css/backoffice.css') }}" rel="stylesheet" type="text/css">

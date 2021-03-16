@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\CompanyuserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +21,19 @@ Route::get('/', function () {
     return view('loginpage');
 });
 
-Route::resource('users', 'UserController');
+Route::resource('users', UserController::class);
+Route::resource('teams', TeamController::class);
 
 Route::get('/manager', function(){
-    return view('layouts.layout');
-});
+    
+    if(Auth::check()){
+        return view('layouts.welcome');
+    }else{
+        return redirect()->back();
+    }
+})->name('manager');
 
+Route::post('/userteams/data', [CompanyuserController::class, 'getTeamUsers'])->name('get_user_teams');
+Route::post('/users/data', [UserController::class, 'getUsers'])->name('get_users');
 
 Auth::routes();

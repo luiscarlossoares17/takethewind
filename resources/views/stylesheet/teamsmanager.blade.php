@@ -1,0 +1,1 @@
+<link href="{{ mix('css/teamsmanager.css') }}" rel="stylesheet" type="text/css">

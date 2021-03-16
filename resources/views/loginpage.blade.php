@@ -136,7 +136,6 @@
 </div>
 </body>
 
-@include('javascript.bootstrap')
 @include('javascript.app')
 @include('javascript.loginpage')
 @yield('scripts')
