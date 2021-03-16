@@ -1,7 +1,5 @@
 $(function(){
-    $("#logout").on('click', function(){
-        console.log("aa");
-        
+    $("#logout").on('click', function(){        
         $(this).closest('form').submit();
     });
 });
