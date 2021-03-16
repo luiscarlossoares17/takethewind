@@ -2,7 +2,7 @@ const mix = require('laravel-mix');
 
 
 
-mix.options({
+/*mix.options({
     processCssUrls: false,
     optimization: {
         concatenateModules: false,
@@ -11,7 +11,7 @@ mix.options({
     }
 });
 
-mix.sourceMaps(true);
+mix.sourceMaps(true);*/
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -23,11 +23,15 @@ mix.sourceMaps(true);
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+
+mix.js('resources/js/bootstrap.js', 'public/js')
+    .js('resources/js/app.js', 'public/js')
+    .js('resources/js/webpages/loginpage.js', 'public/js')
+    .js('resources/js/webpages/teammanager.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/loginpage.scss', 'public/css')
-    .sourceMaps();
+    .sass('resources/sass/loginpage.scss', 'public/css');
 
 
-mix.extract();
-mix.version();
+
+/*mix.extract();
+mix.version();*/

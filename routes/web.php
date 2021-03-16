@@ -17,4 +17,11 @@ Route::get('/', function () {
     return view('loginpage');
 });
 
+Route::resource('users', 'UserController');
 
+Route::get('/manager', function(){
+    return view('layouts.layout');
+});
+
+
+Auth::routes();

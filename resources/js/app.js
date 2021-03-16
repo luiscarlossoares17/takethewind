@@ -1,2 +1,4 @@
-require('./bootstrap');
-require("./plugins/jquery");
+//require('./bootstrap');
+
+import $ from 'jquery';
+window.$ = window.jQuery = $;

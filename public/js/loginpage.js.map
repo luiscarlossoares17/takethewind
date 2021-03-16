@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./resources/js/webpages/loginpage.js"],"names":["$","alert"],"mappings":";;;;;;;;AAAAA,CAAC,CAAC,YAAU;AACRC,OAAK,CAAC,MAAD,CAAL;AACH,CAFA,CAAD,C","file":"/js/loginpage.js","sourcesContent":["$(function(){\n    alert(\"saaa\");\n});"],"sourceRoot":""}

@@ -1,7 +1,8 @@
 {
-    "/js/app.js": "/js/app.js?id=3019e7d58f9aabf7d4aa",
-    "/js/manifest.js": "/js/manifest.js?id=a29a94ca54afc9a6b27c",
-    "/css/app.css": "/css/app.css?id=e005b67b0139494e7a30",
-    "/css/loginpage.css": "/css/loginpage.css?id=5010d977ad818c0838e0",
-    "/js/vendor.js": "/js/vendor.js?id=eeb9805372d4e749b453"
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/app.js": "/js/app.js",
+    "/js/loginpage.js": "/js/loginpage.js",
+    "/js/teammanager.js": "/js/teammanager.js",
+    "/css/app.css": "/css/app.css",
+    "/css/loginpage.css": "/css/loginpage.css"
 }

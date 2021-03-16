@@ -10,9 +10,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>@yield('title')</title>
 
   <!-- Google Font: Source Sans Pro -->
-  @include('stylesheet.adminlte');
+  @include('stylesheet.adminlte')
   @yield('styles')
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   
 </head>
 <body class="hold-transition sidebar-mini">
@@ -66,6 +65,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
     <!-- Main content -->
     <div class="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <form method="POST" action="{{ route('logout') }}" class="form-inline my-2 my-lg-0 w-100 d-flex justify-content-end">
+        @csrf
+          <a id="logout" class="float-right">Logout</a>
+        </form>
+      </div>
+    </nav>
         @yield('content')  
     </div>
     <!-- /.content -->
@@ -81,12 +88,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 @include('javascript.app');
+@include('javascript.teammanager');
 @yield('scripts')
-<!-- jQuery -->
-{{-- <script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script> --}}
+
 </body>
 </html>
