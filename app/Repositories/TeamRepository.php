@@ -20,14 +20,8 @@ class TeamRepository extends BaseRepository
     public function get($search = null, $orderBy = null, $orderType = null, $startLimit = null, $endLimit = null)
     {
 
-        /*- $objects = DB::table('users as U')
-                ->leftJoin('teamusers as TU', 'TU.user_id', '=', 'U.id')
-                ->leftJoin('teams as T', 'T.id', '=', 'TU.team_id')
-                ->select(
-                    'U.name as user',
-                    'U.email',
-                    'T.name as team'
-                );
+        $objects = DB::table('teams as T')
+                ->select('T.*');
 
         $totalObjects = $objects->get()->count();
 
@@ -36,12 +30,10 @@ class TeamRepository extends BaseRepository
         if (!empty($search)) {
 
             $objects->where(function ($query) {
-                $query->where('U.name', 'LIKE', '?')
-                    ->orWhere('U.email', 'LIKE', '?')
-                    ->orWhere('T.name', 'LIKE', '?');
+                $query->where('T.name', 'LIKE', '?');
             });
 
-            $searchList = ['%' . $search . '%', '%' . $search . '%', '%' . $search . '%'];
+            $searchList = ['%' . $search . '%'];
 
             // Order by must be after our filters
             $objects->orderByRaw($orderBy . ' ' . $orderType);
@@ -77,7 +69,7 @@ class TeamRepository extends BaseRepository
 
         $data = [$objectsList, $totalObjects, $totalRecordsFiltered];
 
-        return $data; */
+        return $data;
     }
 
 

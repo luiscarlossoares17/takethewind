@@ -73,6 +73,34 @@ var Ziggy = {
       "uri": "teams\/{team}",
       "methods": ["DELETE"]
     },
+    "companyusers.index": {
+      "uri": "companyusers",
+      "methods": ["GET", "HEAD"]
+    },
+    "companyusers.create": {
+      "uri": "companyusers\/create",
+      "methods": ["GET", "HEAD"]
+    },
+    "companyusers.store": {
+      "uri": "companyusers",
+      "methods": ["POST"]
+    },
+    "companyusers.show": {
+      "uri": "companyusers\/{companyuser}",
+      "methods": ["GET", "HEAD"]
+    },
+    "companyusers.edit": {
+      "uri": "companyusers\/{companyuser}\/edit",
+      "methods": ["GET", "HEAD"]
+    },
+    "companyusers.update": {
+      "uri": "companyusers\/{companyuser}",
+      "methods": ["PUT", "PATCH"]
+    },
+    "companyusers.destroy": {
+      "uri": "companyusers\/{companyuser}",
+      "methods": ["DELETE"]
+    },
     "manager": {
       "uri": "manager",
       "methods": ["GET", "HEAD"]
@@ -83,6 +111,10 @@ var Ziggy = {
     },
     "get_users": {
       "uri": "users\/data",
+      "methods": ["POST"]
+    },
+    "get_teams": {
+      "uri": "teams\/data",
       "methods": ["POST"]
     },
     "login": {

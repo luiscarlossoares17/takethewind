@@ -899,3 +899,116 @@
   padding-bottom: 0.35rem;
 
 }
+
+
+.component-buttons-holder{
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.component-buttons-holder {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+button.save, button.cancel, button.submit {
+  font-size: 16px;
+  min-width: 125px;
+  height: 38px;
+  color: #FFFFFF;
+}
+
+
+.btn ~ .btn {
+  margin-left: 1rem;
+}
+
+.btn:focus, .btn.focus {
+  box-shadow: none;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  background-color: gray
+}
+
+.btn.save {
+  background-color: rgb(0, 0, 141);
+  border-color: rgb(0, 0, 141);
+  color: #FFFFFF;
+}
+
+.btn.save:hover {
+  background-color: blue;
+  border-color:  blue;
+  color: #FFFFFF;
+}
+
+.btn.save:active {
+  background-color: blue;
+  border-color:  blue;
+  color: #FFFFFF;
+}
+
+.btn.cancel {
+  background-color: rgb(0, 0, 59);
+  border-color: rgb(0, 0, 59);
+  color: #FFFFFF;
+}
+
+.btn.cancel:hover {
+  background-color: blue;
+  border-color: blue;
+  color: #FFFFFF;
+}
+
+.btn.cancel:active {
+  background-color: blue;
+  border-color: blue;
+  color: #FFFFFF;
+}
+
+.btn.submit {
+  background-color: green;
+  border-color: green;
+  color: #FFFFFF;
+}
+
+.btn.submit:hover {
+  background-color: green;
+  border-color: green;
+  color: #FFFFFF;
+}
+
+.btn.submit:active {
+  background-color: green;
+  border-color: green;
+  color: #FFFFFF;
+}
+
+.btn.delete {
+  background-color: rgb(163, 4, 4);
+  border-color: rgb(163, 4, 4);
+  color: #FFFFFF;
+}
+
+.btn.delete:hover {
+  background-color: red;
+  border-color: red;
+  color: #FFFFFF;
+}
+
+.btn.delete:active {
+  background-color: rgb(163, 4, 4);
+  border-color:rgb(163, 4, 4);
+  color: #FFFFFF;
+}

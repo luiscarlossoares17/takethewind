@@ -29,7 +29,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        return view('teams.list');
     }
 
     /**
@@ -101,7 +101,7 @@ class TeamController extends Controller
     public function getTeams(Request $request){
        
 
-        /*$search         = $request['search']['value'];
+        $search         = $request['search']['value'];
         $orderColumn    = $request['order'][0]['column'];
         $orderType      = $request['order'][0]['dir'];
         $startLimit     = $request['start'];
@@ -109,15 +109,15 @@ class TeamController extends Controller
         $draw           = $request['draw'];
         $orderBy        = (int)$orderColumn+1;
 
-        $userTeamsList = $this->userRepository->get($search, $orderBy, $orderType, $startLimit, $endLimit);
+        $teamsList = $this->teamRepository->get($search, $orderBy, $orderType, $startLimit, $endLimit);
 
         $jsonData = array(
             'draw'              => $draw,
-            'recordsTotal'      => $userTeamsList[1],
-            'recordsFiltered'   => $userTeamsList[2],
-            'data'              => $userTeamsList[0]
+            'recordsTotal'      => $teamsList[1],
+            'recordsFiltered'   => $teamsList[2],
+            'data'              => $teamsList[0]
         );
 
-        return response()->json($jsonData);*/
+        return response()->json($jsonData);
     }
 }

@@ -84,6 +84,70 @@ class CompanyuserRepository extends BaseRepository
     public function search($search, $criteria){
         //TODO: Implements search method
     }
+
+
+    public function getUsers($search = null, $orderBy = null, $orderType = null, $startLimit = null, $endLimit = null){
+        $objects = DB::table('companyusers as CU')
+                ->leftJoin('categories as C', 'C.id', '=', 'CU.category_id')
+                ->select(
+                    'CU.id',
+                    'CU.name as user',
+                    'CU.email',
+                    'CU.age',
+                    'C.name as category'
+                );
+
+        $totalObjects = $objects->get()->count();
+
+        //dd($totalObjects);
+
+        if (!empty($search)) {
+
+            $objects->where(function ($query) {
+                $query->where('CU.name', 'LIKE', '?')
+                    ->orWhere('CU.email', 'LIKE', '?')
+                    ->orWhere('CU.age', 'LIKE', '?')
+                    ->orWhere('C.name', 'LIKE', '?');
+            });
+
+            $searchList = ['%' . $search . '%', '%' . $search . '%', '%' . $search . '%', '%' . $search . '%'];
+
+            // Order by must be after our filters
+            $objects->orderByRaw($orderBy . ' ' . $orderType);
+
+            $countObjects = DB::raw($objects->toSql());
+
+            // COUNT ALL SEARCHED RECORDS
+            $totalSearchedList = DB::select($countObjects, $searchList);
+
+            $totalRecordsFiltered = count($totalSearchedList);
+
+            // GET ONLY RECORDS OF 1 PAGE WITH START NUMBER AND LENGTH
+            if ($endLimit != -1) {
+                $objects = $objects
+                    ->skip($startLimit)
+                    ->take($endLimit);
+            }
+            $objects = DB::raw($objects->toSql());
+
+            // GET SELECTED RECORDS
+            $objectsList = DB::select($objects, $searchList);
+        } else {
+
+            $totalRecordsFiltered = $totalObjects;
+            // GET ONLY RECORDS OF 1 PAGE WITH START NUMBER AND LENGTH
+            if ((int)$endLimit != -1) {
+                $objectsList = $objects
+                    ->skip($startLimit)
+                    ->take($endLimit);
+            }
+            $objectsList = $objects->get();
+        }
+
+        $data = [$objectsList, $totalObjects, $totalRecordsFiltered];
+
+        return $data;
+    }
     
     #endregion
 }

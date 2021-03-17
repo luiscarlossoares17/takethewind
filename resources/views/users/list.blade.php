@@ -13,8 +13,12 @@
         <table style="width:100%" class="table2 table-bordered2" id="usersTable">
             <thead>
                 <tr>
+                    <th hidden>show</th>
                     <th>User</th>
+                    <th>Age</th>
                     <th>Email</th>
+                    <th>Category</th>
+                    <th>Actions</th>
                 </tr>
                 
             </thead>
@@ -32,7 +36,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="user-name" class="form-control" placeholder="Name">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Name">
                         <div id="span-name"></div>
                     </div>
                 </div>
@@ -40,7 +44,7 @@
             <div class="form-row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="email">Email</label>
                         <input type="text" name="email" id="email" class="form-control" placeholder="Email">
                         <div id="span-email"></div>
                     </div>
@@ -49,16 +53,52 @@
             <div class="form-row">
                 <div class="col-md-12">
                     <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" name="age" id="age" class="form-control" placeholder="Age">
+                        <div id="span-age"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <div class="form-group">
                         <label for="name">Category</label>
-                        <input type="text" name="category" id="category" class="form-control" placeholder="Category">
+                        <select id="category" name="category" class="form-control">
+                            <option></option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                         <div id="span-category"></div>
                     </div>
                 </div>
             </div>
+            <input type="text" id="userId" hidden>
         @endslot
 
         @slot('footer')
+            @component('components.buttons', [
+                'element' => 'modal',
+                'buttons' => [
+                    [
+                        'id' => 'cancelModalButton',
+                        'category' => 'cancel',
+                        'text' => 'Cancel'
+                    ],
+                    [
+                        'id' => 'editModalButton',
+                        'category' => 'save',
+                        'text' => 'Update'
+                    ],
+                    [
+                        'id' => 'createModalButton',
+                        'category' => 'save',
+                        'text' => 'Create'
+                    ],
+                ]
+            ])
 
+            @endcomponent
         @endslot
     @endcomponent
 

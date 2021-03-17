@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="far fa-circle nav-icon"></i>
                 <p>Main Page</p>
             </a>
-            <a href="{{ route('users.index') }}" class="nav-link" id="user-page">
+            <a href="{{ route('companyusers.index') }}" class="nav-link" id="user-page">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Users</p>
             </a>
@@ -64,6 +64,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
     <!-- Main content -->
     <div class="content">
+    @component('components.modal', ['id' => 'operation-confirm-modal', 'name' => 'confirm-modal-procceed', 'title' => 'Operation', 'size' => 'medium', 'modalBodyId' => 'confirm-modal-procceed'])
+
+        @slot('footer')
+            @component('components.buttons', [
+                'element' => 'modal',
+                'buttons' => [
+                    [
+                        'id' => 'confirm-modal-cancel',
+                        'category' => 'cancel',
+                        'text' => 'Cancel'
+                    ],
+                    [
+                        'id' => 'confirm-modal-button',
+                        'category' => 'delete',
+                        'text' => 'Delete'
+                    ]
+                ]
+            ])
+
+            @endcomponent
+        @endslot
+    @endcomponent
+
         @yield('content')  
     </div>
     <!-- /.content -->

@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::resource('users', UserController::class);
 Route::resource('teams', TeamController::class);
+Route::resource('companyusers', CompanyuserController::class);
 
 Route::get('/manager', function(){
     
@@ -34,6 +35,8 @@ Route::get('/manager', function(){
 })->name('manager');
 
 Route::post('/userteams/data', [CompanyuserController::class, 'getTeamUsers'])->name('get_user_teams');
-Route::post('/users/data', [UserController::class, 'getUsers'])->name('get_users');
+Route::post('/users/data', [CompanyuserController::class, 'getUsers'])->name('get_users');
+Route::post('/teams/data', [TeamController::class, 'getTeams'])->name('get_teams');
+
 
 Auth::routes();
