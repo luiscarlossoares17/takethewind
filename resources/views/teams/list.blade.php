@@ -38,8 +38,30 @@
                     </div>
                 </div>
             </div>
-            
-            <input type="text" id="userId" hidden>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table id="usersTable" class="table2 table-bordered2">
+                            <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Age</th>
+                                <th>Email</th>
+                                <th>Category</th>
+                                <th>User Level</th>
+                                <th>
+                                    <div class="form-check d-flex justify-content-center align-items-center">
+                                        <input class="form-check-input" id="selectAll" type="checkbox">
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <input type="text" id="teamId" hidden>
         @endslot
 
         @slot('footer')

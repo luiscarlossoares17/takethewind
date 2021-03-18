@@ -37,6 +37,7 @@ Route::get('/manager', function(){
 Route::post('/userteams/data', [CompanyuserController::class, 'getTeamUsers'])->name('get_user_teams');
 Route::post('/users/data', [CompanyuserController::class, 'getUsers'])->name('get_users');
 Route::post('/teams/data', [TeamController::class, 'getTeams'])->name('get_teams');
+Route::post('/teams/users/data', [TeamController::class, 'getUsers'])->name('get_teams_users');
 
 
 Auth::routes();

@@ -1,3 +1,4 @@
+var usersTable;
 $(function(){
 
 
@@ -57,33 +58,37 @@ $(function(){
 
     }
 
+    $("#team-modal").on('shown.bs.modal', function(){
+        $($.fn.dataTable.tables(true)).DataTable().api().columns.adjust();
+    })
+
 
     $("#create-team").on('click', function(){
 
         /**
      *  FUNCTION TO OPEN MODAL FOR CREATE A NEW Roles
      */
-         $("#createModal").click(function(){
             $("#editModalButton").hide();
             $("#createModalButton").show();
-            $("#modaltitle").html("Create Role");
-            $("#role-modal").appendTo("body").modal('show');
+            $("#modaltitle").html("Create Team");
+            $("#team-modal").appendTo("body").modal('show');
 
 
-            $('#permissions-table').dataTable().fnDestroy();
-            var apiAccessesTable = $('#permissions-table').DataTable({
+            $('#usersTable').dataTable().fnDestroy();
+            usersTable = $('#usersTable').DataTable({
                 fixedHeader: {
                     header: true
                 },
                 'paging': false,
-                'scrollY': '20vh',
+                'scrollY': '30vh',
                 'scrollCollapse': true,
+                'serverSide': true,
                 // 'scrollY': '200px',
                 //'lengthChange': false,
                 'pageLength': 15,
                 'columnDefs':[
                     {
-                        'targets'   : [2],
+                        'targets'   : [5],
                         'searchable': false,
                         'orderable' : false,
                         'width'     : '8%'
@@ -94,36 +99,39 @@ $(function(){
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     data: {
-                        'role' : 'all'
+                        'team' : 'all'
                     },
                     type: 'POST',
-                    url : route('get_permissions'),
+                    url : route('get_teams_users'),
                     'dataSrc': function (json){
-                        var permissions = new Array();
-                        for(var i = 0; i < json.data.length; i++){
-                            var id = json.data[i][2];
-                            permissions.push({
-                                'name'        : json.data[i][0],
-                                'description' : json.data[i][1],
-                                //'updated_at'  : json.data[i][2],
-                                'checkbox'    : new Checkbox({id: 'permissions', value: id, name: 'permissions[]'}).datatable().render()
+                        let select = json.select;
+                        let usersData = json.data;
+                        let users = new Array();
+                        for(let i = 0; i < usersData.length; i++){
+                            let id = usersData[i].id;
+                            users.push({
+                                'name'          : usersData[i].name,
+                                'age'           : usersData[i].age,
+                                'email'         : usersData[i].email,
+                                'category'      : usersData[i].category,
+                                'userLevel'     : select,
+                                'checkbox'      : '<div class="form-check d-flex justify-content-center align-items-center"><input class="form-check-input" type="checkbox" id="companyuser" value="'+id+'"></div>'
                             });
                         }
-                        return permissions;
+                        return users;
                     }
                 },
                 'columns': [
                     {'data': 'name'},
-                    {'data': 'description'},
-                    //{'data': 'updated_at'},
+                    {'data': 'age'},
+                    {'data': 'email'},
+                    {'data': 'category'},
+                    {'data': 'userLevel'},
                     {'data': 'checkbox'}
                 ]
             });
 
             $('#selectAllAccesses').prop('checked', false);
-    });
-
-
 
 
 
@@ -134,5 +142,245 @@ $(function(){
         $("#team-modal").appendTo('body').modal('show');
     });
 
+
+
+    $("#createModalButton").on('click', function(){
+        //usersTable.fnFilter('');
+        
+        setTimeout(function(){
+            let name        = $("#name").val();
+            let users       = [];
+            let userLevel   = [];
+            let save        = true;
+            $("#companyuser:checked").each(function(){
+                let userLevelId = $(this).closest('tr').find('select').val();
+                
+                if(userLevelId != ''){
+                    users.push($(this).val());
+                    userLevel.push(userLevelId);
+                    console.log(userLevelId);
+                }else{
+                    save = false;
+                }
+                
+            });
+            //let route       = route('companyusers.store');
+
+            if(save){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: route('teams.store'),
+                    data: {
+                        name    : name,
+                        users   : users,
+                        userlevels: userLevel
+        
+                    },
+                    success: function(result){
+                    
+                        $("#user-modal").modal('toggle');
+                        location.reload(); //Normalmente o Datatables devia suportar o reload dos dados
+                    
+                    },
+                    error: function(errors){
+                        $.each(errors.responseJSON.errors, function(index, value){
+                            alert(index + ' - ' + value);
+                        });
+                    }
+                });
+            }else{
+                alert('Please select all levels of users that are checked');
+            }
+        }, 1000);
+
+    });
+
+
+    $(document).on('click', '.edit-button', function(){
+        let teamId = $(this).closest('tr').find('td').eq(0).html();
+
+        if(teamId > 0){
+            $.getJSON(route('teams.show', teamId), function(data){
+                let team = data;
+
+                $("#teamId").val(teamId);
+                $("#name").val(team.name);
+            
+
+                $("#modaltitle").html('Update Team');
+                $("#createModalButton").hide();
+                $("#editModalButton").show();
+
+
+                $('#usersTable').dataTable().fnDestroy();
+                usersTable = $('#usersTable').DataTable({
+                    fixedHeader: {
+                        header: true
+                    },
+                    'paging': false,
+                    'scrollY': '30vh',
+                    'scrollCollapse': true,
+                    'serverSide': true,
+                    // 'scrollY': '200px',
+                    //'lengthChange': false,
+                    'pageLength': 15,
+                    'columnDefs':[
+                        {
+                            'targets'   : [5],
+                            'searchable': false,
+                            'orderable' : false,
+                            'width'     : '8%'
+                        }
+                    ],
+                    'ajax':{
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            'team' : team.id
+                        },
+                        type: 'POST',
+                        url : route('get_teams_users'),
+                        'dataSrc': function (json){
+                            let select = json.select;
+                            let usersData = json.data;
+                            let users = new Array();
+                            for(let i = 0; i < usersData.length; i++){
+                                let id = usersData[i][0];
+                                users.push({
+                                    'name'          : usersData[i][1],
+                                    'age'           : usersData[i][2],
+                                    'email'         : usersData[i][3],
+                                    'category'      : usersData[i][4],
+                                    'userLevel'     : usersData[i][5],
+                                    'checkbox'      : '<div class="form-check d-flex justify-content-center align-items-center"><input class="form-check-input" type="checkbox" id="companyuser" value="'+id+'"></div>',
+                                    'teamMember'    : usersData[i][6]
+                                });
+                            }
+                            return users;
+                        }
+                    },
+                    'createdRow': function(row, users, dataIndex){
+                        $(row).find('input[type=checkbox]').prop('checked', users.teamMember);
+                    },
+                    'columns': [
+                        {'data': 'name'},
+                        {'data': 'age'},
+                        {'data': 'email'},
+                        {'data': 'category'},
+                        {'data': 'userLevel'},
+                        {'data': 'checkbox'}
+                    ]
+                });
+
+                $("#team-modal").appendTo('body').modal('show');
+
+            });
+        }
+    });
+
+
+
+    $("#editModalButton").on('click', function(){
+
+        //usersTable.fnFilter('');
+
+        setTimeout(function(){
+            let teamId = $("#teamId").val();
+            let name = $("#name").val();
+            let users       = [];
+            let userLevel   = [];
+            let save        = true;
+            $("#companyuser:checked").each(function(){
+                let userLevelId = $(this).closest('tr').find('select').val();
+                
+                if(userLevelId != ''){
+                    users.push($(this).val());
+                    userLevel.push(userLevelId);
+                    console.log(userLevelId);
+                }else{
+                    save = false;
+                }
+                
+            });
+            
+            
+            if(save){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: route('teams.update', teamId),
+                    data: {
+                        name    : name,
+                        users   : users,
+                        userlevels: userLevel,
+                        _method : 'PUT'
+                    },
+                    success: function(result){
+                    
+                        $("#team-modal").modal('toggle');
+                        location.reload(); //Normalmente o Datatables devia suportar o reload dos dados
+                    
+                    },
+                    error: function(errors){
+                        $("#modalBodyDiv :input").removeClass('is-invalid');
+                        $("#modalBodyDiv select").removeClass('is-invalid');
+                        $.each(errors.responseJSON.errors, function(index, value){
+                            $(':input[name='+index+']').addClass('is-invalid');
+                            $('select[name='+index+']').addClass('is-invalid');
+                            $('#span-'+index).removeClass('invalid-feedback').html('').addClass('is-invalid').html(value);
+                        });
+                    }
+                });
+            }else{
+                alert('Please select all levels of users that are checked');
+            }
+
+        }, 1000);
+
+    });
+
+
+
+    $(document).on('click', '.delete-button', function(){
+        let teamId = $(this).closest('tr').find('td').eq(0).html();
+
+        if(userId > 0){
+            $("#operation-modaltitle").html('Delete');
+            $("#confirm-modal-procceed").html('Do you want delete this user?').show();
+            $('#confirm-modal-procceed').append('<input type="text" value="'+teamId+'" hidden>');
+            $("#operation-confirm-modal").appendTo('body').modal('show');
+        }
+    });
+
+
+    $("#confirm-modal-button").on('click', function(){
+        let userId = $('#confirm-modal-procceed').find('input').val();
+        
+        if(userId > 0){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: route('teams.destroy', userId),
+                data: {
+                    _method : 'DELETE'
+                },
+                success: function(result){
+                
+                    $("#operation-confirm-modal").modal('toggle');
+                    location.reload(); //Normalmente o Datatables devia suportar o reload dos dados
+                
+                }
+            });
+        }
+
+    });
 
 });

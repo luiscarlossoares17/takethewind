@@ -117,6 +117,10 @@ var Ziggy = {
       "uri": "teams\/data",
       "methods": ["POST"]
     },
+    "get_teams_users": {
+      "uri": "teams\/users\/data",
+      "methods": ["POST"]
+    },
     "login": {
       "uri": "login",
       "methods": ["GET", "HEAD"]

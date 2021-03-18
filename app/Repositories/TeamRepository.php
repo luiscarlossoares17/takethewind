@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Team;
+use App\Models\Teamusers;
 use Illuminate\Support\Facades\DB;
 
 
@@ -75,6 +76,26 @@ class TeamRepository extends BaseRepository
 
     public function search($search, $criteria){
         //TODO: Implements search method
+    }
+
+
+    public function deleteTeamUsers($teamId, $userId, $userLevel, $usersIdsList){
+        return DB::table('teamusers')->where(function($query) use($teamId, $userId, $userLevel){
+                        $query->where('team_id', '=', $teamId)
+                        ->where('companyuser_id', '=', $userId)
+                        ->where('userlevel_id', '!=', $userLevel);
+                    })
+                    ->orWhereNotIn('companyuser_id', $usersIdsList)
+                    ->update([
+                        'deleted_at' => now()
+                    ]);
+    }
+
+    public function deleteTeamMembers($teamId){
+        return DB::table('teamusers')->where('team_id', '=', $teamId)
+                    ->update([
+                        'deleted_at' => now()
+                    ]);
     }
     
     #endregion
