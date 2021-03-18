@@ -10,10 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="L5 OpenApi",
- *      description="L5 Swagger OpenApi description",
+ *      title="Takethewind API",
+ *      description="This is the api provided by our software",
  *      @OA\Contact(
- *          email="darius@matulionis.lt"
+ *          email="luiscarlos7693@gmail.com"
  *      ),
  *     @OA\License(
  *         name="Apache 2.0",

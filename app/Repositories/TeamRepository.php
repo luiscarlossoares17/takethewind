@@ -91,11 +91,34 @@ class TeamRepository extends BaseRepository
                     ]);
     }
 
+
+    /**
+     * Soft delete team members
+     */
     public function deleteTeamMembers($teamId){
         return DB::table('teamusers')->where('team_id', '=', $teamId)
                     ->update([
                         'deleted_at' => now()
                     ]);
+    }
+
+
+    /**
+     * 
+     */
+    public function getTeamsByUserName($userName){
+
+        $query = DB::table('teams as T')
+                    ->join('teamusers as TU', 'TU.team_id', '=', 'T.id')
+                    ->join('companyusers as CU', 'CU.id', '=', 'TU.companyuser_id')
+                    ->where('CU.name', 'LIKE', "%$userName%")
+                    ->select('T.*')
+                    ->whereNull('T.deleted_at')
+                    ->whereNull('TU.deleted_at');
+
+        return $query->get();
+
+
     }
     
     #endregion

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyuserApiController;
+use App\Http\Controllers\TeamApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/companyusers', [CompanyuserApiController::class, 'getUsers']);
+Route::get('/team/companyuser/{name}', [CompanyuserApiController::class, 'getUserTeams']);
+Route::get('/teams', [TeamApiController::class, 'getTeams']);

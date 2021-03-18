@@ -41,7 +41,7 @@
             <div class="form-row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table id="usersTable" class="table2 table-bordered2">
+                        <table id="usersTable" class="table2 table-bordered2 w-100">
                             <thead>
                             <tr>
                                 <th>User</th>

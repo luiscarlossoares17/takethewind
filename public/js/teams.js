@@ -11,6 +11,7 @@ $(function () {
       fixedHeader: {
         header: true
       },
+      dom: '<"row"<"col-sm-12 d-flex justify-content-end"f>>' + '<"row"<"col-sm-12"tr>>' + '<"row"<"col-sm-3 d-flex justify-content-start"i><"col-sm-6 d-flex justify-content-center"p><"col-sm-3 d-flex justify-content-end"l>>',
       'processing': true,
       'paging': true,
       'scrollY': '55vh',
@@ -58,7 +59,7 @@ $(function () {
   }
 
   $("#team-modal").on('shown.bs.modal', function () {
-    $($.fn.dataTable.tables(true)).DataTable().api().columns.adjust();
+    $('#usersTable').find('thead').find('tr').find('th').eq(0).trigger('click');
   });
   $("#create-team").on('click', function () {
     /**
@@ -73,12 +74,11 @@ $(function () {
       fixedHeader: {
         header: true
       },
+      dom: '<"row"<"col-sm-12 d-flex justify-content-end"f>>' + '<"row"<"col-sm-12"tr>>' + '<"row"<"col-sm-3 d-flex justify-content-start"i><"col-sm-6 d-flex justify-content-center"p><"col-sm-3 d-flex justify-content-end"l>>',
       'paging': false,
-      'scrollY': '30vh',
-      'scrollCollapse': true,
+      //'scrollY': '30vh',
+      //'scrollCollapse': true,
       'serverSide': true,
-      // 'scrollY': '200px',
-      //'lengthChange': false,
       'pageLength': 15,
       'columnDefs': [{
         'targets': [5],
@@ -197,9 +197,10 @@ $(function () {
           fixedHeader: {
             header: true
           },
+          dom: '<"row"<"col-sm-12 d-flex justify-content-end"f>>' + '<"row"<"col-sm-12"tr>>' + '<"row"<"col-sm-3 d-flex justify-content-start"i><"col-sm-6 d-flex justify-content-center"p><"col-sm-3 d-flex justify-content-end"l>>',
           'paging': false,
-          'scrollY': '30vh',
-          'scrollCollapse': true,
+          //'scrollY': '30vh',
+          //'scrollCollapse': true,
           'serverSide': true,
           // 'scrollY': '200px',
           //'lengthChange': false,

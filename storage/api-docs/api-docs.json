@@ -1,10 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "L5 OpenApi",
-        "description": "L5 Swagger OpenApi description",
+        "title": "Takethewind API",
+        "description": "This is the api provided by our software",
         "contact": {
-            "email": "darius@matulionis.lt"
+            "email": "luiscarlos7693@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -21,6 +21,60 @@
                 "summary": "Get list of users",
                 "description": "Returns list of users",
                 "operationId": "getUsers",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/team/companyuser/{name}": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Get user teams",
+                "description": "Returns teams of a specific user",
+                "operationId": "getUserTeams",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "User name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {}
+                ]
+            }
+        },
+        "/api/teams": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Get list of teams",
+                "description": "Returns list of teams",
+                "operationId": "getTeams",
                 "responses": {
                     "200": {
                         "description": "successful operation"

@@ -10,6 +10,7 @@ $(function () {
       fixedHeader: {
         header: true
       },
+      dom: '<"row"<"col-sm-12 d-flex justify-content-end"f>>' + '<"row"<"col-sm-12"tr>>' + '<"row"<"col-sm-3 d-flex justify-content-start"i><"col-sm-6 d-flex justify-content-center"p><"col-sm-3 d-flex justify-content-end"l>>',
       'processing': true,
       'paging': true,
       'scrollY': '55vh',
