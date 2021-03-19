@@ -2,6 +2,7 @@
     "/js/bootstrap.js": "/js/bootstrap.js",
     "/js/app.js": "/js/app.js",
     "/js/datatables.js": "/js/datatables.js",
+    "/js/jquery-ui.js": "/js/jquery-ui.js",
     "/js/loginpage.js": "/js/loginpage.js",
     "/js/teammanager.js": "/js/teammanager.js",
     "/js/users.js": "/js/users.js",

@@ -190,6 +190,12 @@ $(function () {
       });
     }
   });
+  $("#user-modal").on('hidden.bs.modal', function () {
+    $("#modalBodyDiv :input").val('').removeClass('is-invalid');
+    $("#modalBodyDiv input").parent().find('span').removeClass('invalid-feedback').html('');
+    $("#modalBodyDiv select").removeClass('is-invalid');
+    $("#modalBodyDiv select").val(null);
+  });
 });
 /******/ })()
 ;

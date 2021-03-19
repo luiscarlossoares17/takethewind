@@ -90,6 +90,7 @@ $(function(){
                 //'scrollY': '30vh',
                 //'scrollCollapse': true,
                 'serverSide': true,
+                'searching' : false,
                 'pageLength': 15,
                 'columnDefs':[
                     {
@@ -151,55 +152,55 @@ $(function(){
 
     $("#createModalButton").on('click', function(){
         //usersTable.fnFilter('');
-        
-        setTimeout(function(){
-            let name        = $("#name").val();
-            let users       = [];
-            let userLevel   = [];
-            let save        = true;
-            $("#companyuser:checked").each(function(){
-                let userLevelId = $(this).closest('tr').find('select').val();
-                
-                if(userLevelId != ''){
-                    users.push($(this).val());
-                    userLevel.push(userLevelId);
-                    console.log(userLevelId);
-                }else{
-                    save = false;
-                }
-                
-            });
-            //let route       = route('companyusers.store');
+        //$("#usersTable_filter").find('input').val('');
+        //$("#usersTable").dataTable().api().columns.search( '' ).draw();
 
-            if(save){
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'POST',
-                    url: route('teams.store'),
-                    data: {
-                        name    : name,
-                        users   : users,
-                        userlevels: userLevel
-        
-                    },
-                    success: function(result){
-                    
-                        $("#user-modal").modal('toggle');
-                        location.reload(); //Normalmente o Datatables devia suportar o reload dos dados
-                    
-                    },
-                    error: function(errors){
-                        $.each(errors.responseJSON.errors, function(index, value){
-                            alert(index + ' - ' + value);
-                        });
-                    }
-                });
+        let name        = $("#name").val();
+        let users       = [];
+        let userLevel   = [];
+        let save        = true;
+        $("#companyuser:checked").each(function(){
+            let userLevelId = $(this).closest('tr').find('select').val();
+            
+            if(userLevelId != ''){
+                users.push($(this).val());
+                userLevel.push(userLevelId);
+                console.log(userLevelId);
             }else{
-                alert('Please select all levels of users that are checked');
+                save = false;
             }
-        }, 1000);
+            
+        });
+        //let route       = route('companyusers.store');
+
+        if(save){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: route('teams.store'),
+                data: {
+                    name    : name,
+                    users   : users,
+                    userlevels: userLevel
+    
+                },
+                success: function(result){
+                
+                    $("#user-modal").modal('toggle');
+                    location.reload(); //Normalmente o Datatables devia suportar o reload dos dados
+                
+                },
+                error: function(errors){
+                    $.each(errors.responseJSON.errors, function(index, value){
+                        alert(index + ' - ' + value);
+                    });
+                }
+            });
+        }else{
+            alert('Please select all levels of users that are checked');
+        }
 
     });
 
@@ -294,62 +295,57 @@ $(function(){
 
     $("#editModalButton").on('click', function(){
 
-        //usersTable.fnFilter('');
-
-        setTimeout(function(){
-            let teamId = $("#teamId").val();
-            let name = $("#name").val();
-            let users       = [];
-            let userLevel   = [];
-            let save        = true;
-            $("#companyuser:checked").each(function(){
-                let userLevelId = $(this).closest('tr').find('select').val();
-                
-                if(userLevelId != ''){
-                    users.push($(this).val());
-                    userLevel.push(userLevelId);
-                    console.log(userLevelId);
-                }else{
-                    save = false;
-                }
-                
-            });
+        let teamId = $("#teamId").val();
+        let name = $("#name").val();
+        let users       = [];
+        let userLevel   = [];
+        let save        = true;
+        $("#companyuser:checked").each(function(){
+            let userLevelId = $(this).closest('tr').find('select').val();
             
-            
-            if(save){
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'POST',
-                    url: route('teams.update', teamId),
-                    data: {
-                        name    : name,
-                        users   : users,
-                        userlevels: userLevel,
-                        _method : 'PUT'
-                    },
-                    success: function(result){
-                    
-                        $("#team-modal").modal('toggle');
-                        location.reload(); //Normalmente o Datatables devia suportar o reload dos dados
-                    
-                    },
-                    error: function(errors){
-                        $("#modalBodyDiv :input").removeClass('is-invalid');
-                        $("#modalBodyDiv select").removeClass('is-invalid');
-                        $.each(errors.responseJSON.errors, function(index, value){
-                            $(':input[name='+index+']').addClass('is-invalid');
-                            $('select[name='+index+']').addClass('is-invalid');
-                            $('#span-'+index).removeClass('invalid-feedback').html('').addClass('is-invalid').html(value);
-                        });
-                    }
-                });
+            if(userLevelId != ''){
+                users.push($(this).val());
+                userLevel.push(userLevelId);
+                console.log(userLevelId);
             }else{
-                alert('Please select all levels of users that are checked');
+                save = false;
             }
-
-        }, 1000);
+            
+        });
+        
+        
+        if(save){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: route('teams.update', teamId),
+                data: {
+                    name    : name,
+                    users   : users,
+                    userlevels: userLevel,
+                    _method : 'PUT'
+                },
+                success: function(result){
+                
+                    $("#team-modal").modal('toggle');
+                    location.reload(); //Normalmente o Datatables devia suportar o reload dos dados
+                
+                },
+                error: function(errors){
+                    $("#modalBodyDiv :input").removeClass('is-invalid');
+                    $("#modalBodyDiv select").removeClass('is-invalid');
+                    $.each(errors.responseJSON.errors, function(index, value){
+                        $(':input[name='+index+']').addClass('is-invalid');
+                        $('select[name='+index+']').addClass('is-invalid');
+                        $('#span-'+index).removeClass('invalid-feedback').html('').addClass('is-invalid').html(value);
+                    });
+                }
+            });
+        }else{
+            alert('Please select all levels of users that are checked');
+        }
 
     });
 
@@ -389,6 +385,12 @@ $(function(){
             });
         }
 
+    });
+
+
+    $("#team-modal").on('hidden.bs.modal', function(){
+        $("#modalBodyDiv :input").val('').removeClass('is-invalid');
+        $("#modalBodyDiv input").parent().find('span').removeClass('invalid-feedback').html('');
     });
 
 });

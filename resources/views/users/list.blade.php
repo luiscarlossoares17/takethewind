@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="Name">
-                        <div id="span-name"></div>
+                        <span class="span-error" id="span-name"></span>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" name="email" id="email" class="form-control" placeholder="Email">
-                        <div id="span-email"></div>
+                        <span class="span-error" id="span-email"></span>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <label for="age">Age</label>
                         <input type="number" name="age" id="age" class="form-control" placeholder="Age">
-                        <div id="span-age"></div>
+                        <span class="span-error" id="span-age"></span>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                        <div id="span-category"></div>
+                        <span class="span-error" id="span-category"></span>
                     </div>
                 </div>
             </div>

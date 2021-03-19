@@ -9,4 +9,3 @@ import { Ziggy } from './ziggy';
 
 window.route = route;
 window.Ziggy = Ziggy;
-
