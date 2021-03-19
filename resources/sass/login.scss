@@ -1,0 +1,136 @@
+.navbar-login {
+    //width: 305px;
+    padding-top: 20px;
+    //padding-bottom: 0px;
+  }
+  
+  .navbar-login-session {
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+  
+  .login-div{
+    min-width: 185px;
+    max-width: 200px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+  .login-small-image-div{
+    width: 22%;
+    min-width: 40px;
+    margin-right: 8px;
+  }
+  @media (max-width: 991px){
+    .login-small-image-div{
+      width: 2rem;
+    }
+  }
+  .login-big-image{
+    width: 120%;
+  }
+  .login-text-div{
+    width: 70%;
+    margin-top: .8vw;
+    margin-left: 5%;
+  }
+  .login-submit-button {
+    display: block;
+    width: 100%;
+    background-color: #005691;
+    color: white;
+    height: 35px;
+    margin-top: 15%;
+    margin-bottom: 12%;
+  }
+  .login-background-color {
+    background-color: white;
+  }
+  
+  #login-modal input{
+    border-top: transparent 0px;
+    border-right: transparent 0px;
+    border-left: transparent 0px;
+    box-shadow: none;
+    border-radius: 0px;
+    margin-top: -4%;
+  }
+  
+  #login-modal label{
+    font-weight: normal;
+  }
+  #login-modal input:focus{
+    box-shadow: none;
+  }
+  
+  #login-modal #modalBodyDiv {
+    margin: 0;
+  }
+  
+  #login-modal .select-arrow {
+    position: absolute;
+    z-index: 10;
+    margin: 0 0 0 0;
+    pointer-events: none;
+    width: 30px;
+    right: 0px;
+    padding-top: 10px;
+    display: block;
+  }
+  
+  .dropdown-login-width{
+    width: 20rem;
+    //padding-left: 1rem;
+  }
+  #login-image{
+    width: 80px;
+    //margin-left: -7%;
+  }
+  .dropdown-menu-login{
+    //left:0px;
+    left: -60%;
+  }
+  .login-text{
+    color: black;
+    //padding-left: 15px;
+    text-decoration: none;
+    vertical-align: super;
+  }
+  .login-text:hover {
+    text-decoration: none;
+    color: black;
+  }
+  
+  
+  .login-text-wrapper i{
+    font-size: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  #fo-logged-dropdown {
+    margin: 8px;
+    min-width: 250px;
+  
+    .dropdown-item.login-text-wrapper {
+      font-size: 0.8rem;
+      padding-left: 0;
+    }
+  
+    @media (min-width: 992px){
+      right: auto;
+      left: 50%;
+      -webkit-transform: translate(-50%, 0);
+      -o-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+    }
+  }
+  #fo-logged-dropdown .btn {
+    background-color: #005691;
+    color: white;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    width: 125px;
+    margin-left: 62px;
+  }

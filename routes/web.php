@@ -25,13 +25,8 @@ Route::resource('users', UserController::class);
 Route::resource('teams', TeamController::class);
 Route::resource('companyusers', CompanyuserController::class);
 
-Route::get('/manager', function(){
-    
-    if(Auth::check()){
-        return view('layouts.welcome');
-    }else{
-        return redirect()->back();
-    }
+Route::get('/', function(){
+        return view('layouts.welcome');    
 })->name('manager');
 
 Route::post('/userteams/data', [CompanyuserController::class, 'getTeamUsers'])->name('get_user_teams');

@@ -34,7 +34,8 @@ mix.js('resources/js/bootstrap.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/loginpage.scss', 'public/css')
     .sass('resources/sass/backoffice.scss', 'public/css')
-    .sass('resources/sass/teamsmanager.scss', 'public/css');
+    .sass('resources/sass/teamsmanager.scss', 'public/css')
+    .sass('resources/sass/login.scss', 'public/css');
 
 
 

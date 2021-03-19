@@ -7,6 +7,7 @@
     "/js/users.js": "/js/users.js",
     "/js/teams.js": "/js/teams.js",
     "/css/app.css": "/css/app.css",
+    "/css/login.css": "/css/login.css",
     "/css/teamsmanager.css": "/css/teamsmanager.css",
     "/css/backoffice.css": "/css/backoffice.css",
     "/css/loginpage.css": "/css/loginpage.css"

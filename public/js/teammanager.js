@@ -17275,8 +17275,28 @@ var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.j
     runInContext = _require.runInContext;
 
 $(function () {
-  $("#logout").on('click', function () {
+  if ($("#profile").length) {
+    $("#sidebar-main-page").css('height', '92.5vh');
+  } else {
+    $("#sidebar-main-page").css('height', '98.6vh');
+  }
+
+  $("#logout-button").on('click', function () {
     $(this).closest('form').submit();
+  });
+  $("#login-button").on('click', function () {
+    $("#login-modal").modal('show');
+  });
+  $(document).on('click', '.nav.nav-tabs.topnav a', function () {
+    var tab = $(this).attr('href');
+
+    if (tab == '.login') {
+      $('.tab-pane.topnav-content.login').addClass('active');
+      $('.tab-pane.topnav-content.register').removeClass('active');
+    } else if (tab == '.register') {
+      $('.tab-pane.topnav-content.register').addClass('active');
+      $('.tab-pane.topnav-content.login').removeClass('active');
+    }
   });
 
   if ($("#teamusersTable")) {

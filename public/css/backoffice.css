@@ -164,6 +164,10 @@
     background-color: #ebebeb;
   }
 }
+#sidebar-main-page {
+  height: 98.6vh;
+}
+
 #top-menu, #main-content {
   padding-left: 2.5%;
   padding-right: 2.5%;
@@ -1036,4 +1040,93 @@ button.save, button.cancel, button.submit {
   background-color: #a30404;
   border-color: #a30404;
   color: #FFFFFF;
+}
+
+.sidebar-font-icon {
+  font-size: 1.5rem;
+}
+
+.sidebar-font-icon-text {
+  font-size: 1rem;
+}
+
+#login-div {
+  color: white;
+}
+
+.icon-enter {
+  font-size: 2rem;
+}
+
+.topnav {
+  overflow: hidden;
+  width: 100%;
+  padding-left: 0px;
+  border-bottom: 1px solid #EFEFF0;
+}
+
+.topnav li {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+}
+
+.topnav a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding: 14px 16px;
+}
+
+.topnav a:hover {
+  text-decoration: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  color: #008ECF;
+}
+
+.topnav a:focus {
+  text-decoration: none;
+  text-underline: none;
+  color: #005691;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid #005691;
+  background-color: #FFFFFF;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin: 0px;
+}
+
+.topnav-content {
+  background-color: #FFFFFF;
+  margin-top: 10%;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+
+#login-modal .component-buttons-holder {
+  padding-right: 0;
+}
+
+.main-sidebar.sidebar-dark-primary.elevation-4 {
+  overflow-x: hidden;
+}
+
+.main-sidebar {
+  margin-top: 0;
+}
+
+.content-wrapper > .content {
+  padding-top: 1rem;
 }
