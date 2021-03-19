@@ -1,0 +1,14 @@
+{
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/app.js": "/js/app.js",
+    "/js/datatables.js": "/js/datatables.js",
+    "/js/loginpage.js": "/js/loginpage.js",
+    "/js/teammanager.js": "/js/teammanager.js",
+    "/js/users.js": "/js/users.js",
+    "/js/teams.js": "/js/teams.js",
+    "/css/app.css": "/css/app.css",
+    "/css/login.css": "/css/login.css",
+    "/css/teamsmanager.css": "/css/teamsmanager.css",
+    "/css/backoffice.css": "/css/backoffice.css",
+    "/css/loginpage.css": "/css/loginpage.css"
+}
