@@ -9,4 +9,9 @@ class Team extends Model
 {
     use HasFactory;
 
+
+    public function teamusers(){
+        return $this->hasMany(Teamusers::class);
+    }
+
 }
