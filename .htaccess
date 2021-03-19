@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /takethewind/
+     
+    RewriteRule ^(.*)$ /takethewind/public/$1 [L]
+</IfModule>
+ 
+<Files ~ "\.ini$">
+  Order allow,deny
+  Deny from all
+</Files>
+ 
+<Files ~ "\.env$">
+  Order allow,deny
+  Deny from all
+</Files>
+ 
+<Files ~ "\.conf$">
+  Order allow,deny
+  Deny from all
+</Files>
+ 
+<Files ~ "\.cfg$">
+  Order allow,deny
+  Deny from all
+</Files>

@@ -1,0 +1,1 @@
+<script src="{{ mix('js/loginpage.js') }}"></script>
