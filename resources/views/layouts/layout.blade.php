@@ -32,12 +32,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="form-row pl-4" id="navbarTogglerDemo03">                  
                   <form method="POST" action="{{ route('logout') }}" class="form-inline d-flex justify-content-start">
                   @csrf
-                    <div id="logout-button" class=" d-flex icon-exit sidebar-font-icon ml-4 mt-4"><p class="ml-3 sidebar-font-icon-text d-flex align-items-center">Logout</p></div>
+                    <div id="logout-button" class=" d-flex icon-exit sidebar-font-icon ml-4 mt-4 cursor-pointer"><p class="ml-3 sidebar-font-icon-text d-flex align-items-center">Logout</p></div>
                   </form>
                 </div>                
               @else
               <div class="form-row pl-4" id="">
-                    <div id="login-button" class=" d-flex icon-enter sidebar-font-icon"><p class="ml-3 sidebar-font-icon-text d-flex align-items-center">Login</p></div>
+                    <div id="login-button" class=" d-flex icon-enter sidebar-font-icon cursor-pointer"><p class="ml-3 sidebar-font-icon-text d-flex align-items-center">Login</p></div>
                 </div>                
               @endif
           </div>
@@ -47,13 +47,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   with font-awesome or any other icon font library -->
               <li class="nav-item menu-open">
                 <a href="{{ route('manager') }}" class="nav-link pl-5" id="main-page">
-                    <div class="icon-home sidebar-font-icon"><p class="ml-3 sidebar-font-icon-text">Home</p></div>
+                    <div class="icon-home sidebar-font-icon cursor-pointer"><p class="ml-3 sidebar-font-icon-text">Home</p></div>
                 </a>
                 <a href="{{ route('companyusers.index') }}" class="nav-link pl-5" id="user-page">
-                  <div class="icon-user sidebar-font-icon"><p class="ml-3 sidebar-font-icon-text">Users</p></div>
+                  <div class="icon-user sidebar-font-icon cursor-pointer"><p class="ml-3 sidebar-font-icon-text">Users</p></div>
                 </a>
                 <a href="{{ route('teams.index') }}" class="nav-link pl-5" id="team-page">
-                  <div class="icon-users sidebar-font-icon"><p class="ml-3 sidebar-font-icon-text">Teams</p></div>              
+                  <div class="icon-users sidebar-font-icon cursor-pointer"><p class="ml-3 sidebar-font-icon-text">Teams</p></div>              
                 </a>
               </li>
           
@@ -146,10 +146,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" name="email" id="email" class="form-control simple-input" placeholder="Email" value="" required>
-                                            @if ($errors->has('email'))
+                                            <input type="text" name="email" id="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" value="" required>
+                                            @if($errors->has('email'))
                                                 <span class="invalid-feedback">
-                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                    {{ $errors->first('email') }}
                                                 </span>
                                             @endif
                                         </div>

@@ -65,13 +65,16 @@ class TeamController extends Controller
         $users = $request->get('users');
         $usersLevels = $request->get('userlevels');
 
-        for($i = 0; $i < count($users); $i++){
-            $teamUser = new Teamusers;
-            $teamUser->user()->associate($users[$i]);
-            $teamUser->userlevel()->associate($usersLevels[$i]);
-            $teamUser->team()->associate($team->id);
-            $teamUser->save();
+        if(!is_null($users)){
+            for($i = 0; $i < count($users); $i++){
+                $teamUser = new Teamusers;
+                $teamUser->user()->associate($users[$i]);
+                $teamUser->userlevel()->associate($usersLevels[$i]);
+                $teamUser->team()->associate($team->id);
+                $teamUser->save();
+            }
         }
+        
 
         return response()->json('Saved with success');
     }

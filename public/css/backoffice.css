@@ -1130,3 +1130,11 @@ button.save, button.cancel, button.submit {
 .content-wrapper > .content {
   padding-top: 1rem;
 }
+
+.span-error {
+  color: red;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
